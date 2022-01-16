@@ -44,7 +44,7 @@ namespace BNG {
             }
 
             updateDebugText();
-            updatePinchButtonText();
+            //updatePinchButtonText();
         }
 
         void doDrawMode() {
@@ -124,7 +124,7 @@ namespace BNG {
             DrawMode = !DrawMode;
             HandTrackingController.DoPinchToGrab = !DrawMode;
             
-            updatePinchButtonText();
+            //updatePinchButtonText();
         }
 
         public void ClearDrawing() {
@@ -161,13 +161,13 @@ namespace BNG {
             }
         }
 
-        void updatePinchButtonText() {
-            if(DrawMode) {
-                PinchTypeText.text = "Pinch Draw";
-            }
-            else {
-                PinchTypeText.text = "Pinch Grab";
-            }
-        }
+        //void updatePinchButtonText() {
+        //    if(DrawMode) {
+        //        PinchTypeText.text = "Pinch Draw";
+        //    }
+        //    else {
+        //        PinchTypeText.text = "Pinch Grab"  
+        //    }
+        //}
     }
 }
