@@ -25,6 +25,19 @@ public class AudioManager : MonoBehaviour
         return clip.name;
     }
 
+    public void SetClipID(int index)
+    {
+        currentClip = index;
+        if (currentClip < 0)
+        {
+            currentClip = audioList.Length - 1;
+        }
+        if (currentClip >= audioList.Length)
+        {
+            currentClip -= audioList.Length;
+        }
+    }
+
     public void PlayClip()
     {
         if(source.isPlaying)

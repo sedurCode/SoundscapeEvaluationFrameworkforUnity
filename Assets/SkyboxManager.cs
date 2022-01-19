@@ -10,7 +10,8 @@ public class SkyboxManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public Material skyboxMat4Photo;
-    public Texture texture;
+    //public Texture texture;
+    public Texture[] textures;
     private int currentSkybox;
     private int _numTextures = 30;
     private string _textureString;
@@ -19,6 +20,8 @@ public class SkyboxManager : MonoBehaviour
         //textures = Resources.FindObjectsOfTypeAll<Texture>("stills");
         //textures = Resources.LoadAll<Texture>("stills");
         currentSkybox = 0;
+        _numTextures = textures.Length;
+        //Resources.FindObjectsOfTypeAll<Texture>("stills");
     }
     void Update()
     {
@@ -55,8 +58,9 @@ public class SkyboxManager : MonoBehaviour
 
     void updateSkybox()
     {
-        _textureString = "stills/Woodland1_still";
-        Texture texture = Resources.Load<Texture>(_textureString);
+        //_textureString = "stills/Woodland1_still";
+        //Texture texture = Resources.Load<Texture>(_textureString);
+        Texture texture = textures[currentSkybox];
         Debug.Log("New texture name: " + texture.name);
         skyboxMat4Photo = new Material(Shader.Find("Skybox/Cubemap"));
         if (skyboxMat4Photo == null)
@@ -69,6 +73,6 @@ public class SkyboxManager : MonoBehaviour
 
     public string GetSkyboxName()
     {
-        return _textureString;
+        return textures[currentSkybox].name;
     }
 }

@@ -11,6 +11,7 @@ namespace SoundscapeStudy
         public GameObject SAMPrefab;
         public GameObject LikertHeaderPrefab;
         public GameObject LikertElementPrefab;
+        public GameObject InputFieldPrefab;
         public AudioClip hoverSound;
         public AudioClip clickSound;
 
@@ -58,6 +59,15 @@ namespace SoundscapeStudy
                 newObj.GetComponentInChildren<SurveyButtonInfo>().instanceNum = i;
                 newObj.GetComponentInChildren<SurveyButtonInfo>().elementNum = element;
             }
+        }
+
+        public void PopulateTextInput(BNG.VRKeyboard AttachedKeyboard)
+        {
+            GameObject newObj;
+            newObj = (GameObject)Instantiate(InputFieldPrefab, transform);
+            newObj.GetComponentInChildren<SurveyButtonInfo>().instanceNum = 0;
+            newObj.GetComponentInChildren<SurveyButtonInfo>().elementNum = 0;
+            newObj.GetComponent<BNG.VRTextInput>().AttachedKeyboard = AttachedKeyboard;
         }
 
         public void AttachButtonsToCallback(FooBarDelegate function)

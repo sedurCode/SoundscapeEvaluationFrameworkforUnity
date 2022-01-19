@@ -64,6 +64,34 @@ namespace SoundscapeStudy
             _uiElementHandle.PopulateSelectionField();
             _uiElementHandle.AttachButtonsToCallback();
         }
+        public void setBasicClassificationForm()
+        {
+            _uiElementHandle.ClearChildren();
+            _uiElementHandle.SetSelectionFieldForBasicSoundscapeClassification();
+            _uiElementHandle.PopulateSelectionField();
+            _uiElementHandle.AttachButtonsToCallback();
+        }
+        public void setLoudnessForm()
+        {
+            _uiElementHandle.ClearChildren();
+            _uiElementHandle.SetSelectionFieldForLoundess();
+            _uiElementHandle.PopulateSelectionField();
+            _uiElementHandle.AttachButtonsToCallback();
+        }
+        public void setAppropriatenessForm()
+        {
+            _uiElementHandle.ClearChildren();
+            _uiElementHandle.SetSelectionFieldForAppropriateness();
+            _uiElementHandle.PopulateSelectionField();
+            _uiElementHandle.AttachButtonsToCallback();
+        }
+        public void setTextInputForm()
+        {
+            _uiElementHandle.ClearChildren();
+            _uiElementHandle.SetSelectionFieldForTextInput();
+            _uiElementHandle.PopulateSelectionFieldText();
+            _uiElementHandle.AttachButtonsToCallback();
+        }
         public void ClearForm()
         {
             _uiElementHandle.ClearChildren();

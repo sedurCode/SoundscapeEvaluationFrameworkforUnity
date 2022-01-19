@@ -11,10 +11,13 @@ namespace SoundscapeStudy
         public enum Mode
         {
             SAM,
-            Likert
+            Likert,
+            Classification,
+            TextInput
         }
         [SerializeField] private Mode currentMode;
         [SerializeField] public Text labelField;
+        [SerializeField] public BNG.VRKeyboard AttachedKeyboard;
         [SerializeField] public Text descriptionField;
         [SerializeField] public GameObject selectionField;
         [SerializeField] public Text buttonField;
@@ -93,6 +96,113 @@ namespace SoundscapeStudy
             //_csf.horizontalFit = ContentSizeFitter.FitMode.MinSize;
             //_csf.verticalFit = ContentSizeFitter.FitMode.MinSize;
         }
+        public void SetSelectionFieldForBasicSoundscapeClassification()
+        {
+            // Grid Layout Group
+            GridLayoutGroup _glg = selectionField.GetComponent<GridLayoutGroup>();
+            //_glg.constraint = GridLayoutGroup.Constraint.Flexible;
+            _glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
+            _glg.constraintCount = 1;
+            _glg.childAlignment = TextAnchor.MiddleCenter;
+            _glg.startAxis = GridLayoutGroup.Axis.Horizontal;
+            _glg.startCorner = GridLayoutGroup.Corner.UpperLeft;
+            _glg.cellSize.Set(120, 180); //_glg.cellSize.Set(30, 30);
+            _glg.spacing.Set(5, 5);
+            SetMode(Mode.Classification);
+            numElements = 1;
+            _selectedOption.Clear();
+            for (int i = 0; i < numElements; i++)
+            {
+                _selectedOption.Add(-1);
+            }
+            numOptions = 5;
+            _buttonText.Clear();
+            _buttonText.Add("Urban");
+            _buttonText.Add("Suburban");
+            _buttonText.Add("Rural");
+            _buttonText.Add("Wilderness");
+            _buttonText.Add("Indoors");
+        }
+        public void SetSelectionFieldForLoundess()
+        {
+            // Grid Layout Group
+            GridLayoutGroup _glg = selectionField.GetComponent<GridLayoutGroup>();
+            //_glg.constraint = GridLayoutGroup.Constraint.Flexible;
+            _glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
+            _glg.constraintCount = 1;
+            _glg.childAlignment = TextAnchor.MiddleCenter;
+            _glg.startAxis = GridLayoutGroup.Axis.Horizontal;
+            _glg.startCorner = GridLayoutGroup.Corner.UpperLeft;
+            _glg.cellSize.Set(120, 180); //_glg.cellSize.Set(30, 30);
+            _glg.spacing.Set(5, 5);
+            SetMode(Mode.Likert);
+            numElements = 1;
+            _selectedOption.Clear();
+            for (int i = 0; i < numElements; i++)
+            {
+                _selectedOption.Add(-1);
+            }
+            numOptions = 5;
+            _buttonText.Clear();
+            _buttonText.Add("Not at all");
+            _buttonText.Add("Slightly");
+            _buttonText.Add("Moderately");
+            _buttonText.Add("Very");
+            _buttonText.Add("Extremely");
+        }
+        public void SetSelectionFieldForAppropriateness()
+        {
+            // Grid Layout Group
+            GridLayoutGroup _glg = selectionField.GetComponent<GridLayoutGroup>();
+            //_glg.constraint = GridLayoutGroup.Constraint.Flexible;
+            _glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
+            _glg.constraintCount = 1;
+            _glg.childAlignment = TextAnchor.MiddleCenter;
+            _glg.startAxis = GridLayoutGroup.Axis.Horizontal;
+            _glg.startCorner = GridLayoutGroup.Corner.UpperLeft;
+            _glg.cellSize.Set(120, 180); //_glg.cellSize.Set(30, 30);
+            _glg.spacing.Set(5, 5);
+            SetMode(Mode.Likert);
+            numElements = 1;
+            _selectedOption.Clear();
+            for (int i = 0; i < numElements; i++)
+            {
+                _selectedOption.Add(-1);
+            }
+            numOptions = 5;
+            _buttonText.Clear();
+            _buttonText.Add("Not at all");
+            _buttonText.Add("Slightly");
+            _buttonText.Add("Moderately");
+            _buttonText.Add("Very");
+            _buttonText.Add("Extremely");
+        }
+        public void SetSelectionFieldForTextInput()
+        {
+            // Grid Layout Group
+            GridLayoutGroup _glg = selectionField.GetComponent<GridLayoutGroup>();
+            _glg.constraintCount = 1;
+            _glg.constraint = GridLayoutGroup.Constraint.FixedRowCount;
+            _glg.childAlignment = TextAnchor.MiddleCenter;
+            _glg.startAxis = GridLayoutGroup.Axis.Horizontal;
+            _glg.startCorner = GridLayoutGroup.Corner.UpperLeft;
+            _glg.cellSize.Set(120, 180);
+            _glg.spacing.Set(5, 5);
+            SetMode(Mode.TextInput);
+            numElements = 1;
+            _selectedOption.Clear();
+            for (int i = 0; i < numElements; i++)
+            {
+                _selectedOption.Add(-1);
+            }
+            numOptions = 5;
+            _buttonText.Clear();
+            for (int i = 0; i < numOptions; i++)
+            {
+                _buttonText.Add("select");
+            }
+            // ContentSizeFitter
+        }
         public void PopulateSelectionField(int numToPopulate, Texture2D[] textures)
         {
             selectionField.GetComponent<PopulateGrid>().PopulateSAM(numToPopulate, textures);
@@ -113,6 +223,10 @@ namespace SoundscapeStudy
         public void PopulateSelectionField()
         {
             selectionField.GetComponent<PopulateGrid>().PopulateLikert(_buttonText.ToArray(), 0);
+        }
+        public void PopulateSelectionFieldText()
+        {
+            selectionField.GetComponent<PopulateGrid>().PopulateTextInput(AttachedKeyboard);
         }
 
         public void AttachButtonsToCallback()

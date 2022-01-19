@@ -46,6 +46,19 @@ namespace SoundscapeStudy
                         _dataManager.AddDatapoint(_dataPoint);
                         break;
                     }
+                case VRUIConsole.Mode.Classification:
+                    {
+                        ExperimentDataPoint _dataPoint = new ExperimentDataPoint();
+                        for (int i = 0; i < ui.GetNumelements() - 1; i++)
+                        {
+                            _dataPoint = _dataManager.ConstructDataPoint(ui.GetSelectedOption(i), _questionID);
+                            _dataManager.AddDatapoint(_dataPoint);
+                            IncrementQuestionID();
+                        }
+                        _dataPoint = _dataManager.ConstructDataPoint(ui.GetSelectedOption(ui.GetNumelements() - 1), _questionID);
+                        _dataManager.AddDatapoint(_dataPoint);
+                        break;
+                    }
             }
         }
 

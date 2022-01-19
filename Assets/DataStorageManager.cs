@@ -71,8 +71,7 @@ namespace SoundscapeStudy
                     sb.Append("},");
                     sb.AppendFormat("{0},", dataPoint.interval.number);
                     sb.AppendFormat("{0},", dataPoint.questionID);
-                    sb.AppendFormat("{0},", dataPoint.response);
-                    sb.Append("\r");
+                    sb.AppendFormat("{0}", dataPoint.response);
                     writer.WriteLine(sb.ToString());
                 }
             }
